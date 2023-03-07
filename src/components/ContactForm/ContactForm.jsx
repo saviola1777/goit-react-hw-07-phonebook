@@ -1,12 +1,18 @@
-
 import css from "components/ContactForm/ContactForm.module.css"
+
+import* as actions from '../../Redux/Contacts/contacts-operations' 
  
 import { useSelector, useDispatch} from "react-redux";    // імпортуємо компонент провайдер який дає доступ до глобального стану
-import { addContact } from "Redux/Contacts/contacts-slice"
+// import { addContact } from "Redux/Contacts/contacts-slice"
+import { useEffect } from "react";
 
 const ContactForm =()=>{                    
 const dispatch= useDispatch()
-const contacts = useSelector(store=>store.contacts)
+const contacts = useSelector(store=>store.contacts.items)
+
+useEffect(()=>{
+  dispatch(actions.fetchAddContacts())  // викликаємо операцію в діспатч
+},[dispatch])
 
 
 const isDublication = (name) => {
@@ -26,7 +32,7 @@ const isDublication = (name) => {
   if (isDublication(name)) {
          return alert(`${name} is already in contacts!`) 
       }                  
-    const action  = addContact({ name, number} )      // а екшен наш обєкт яка приймає імя і номер і записує дані в пейлоад повертає обєкт який потрапляє в диспач і він запихає в
+    const action  = actions.fetchAddContacts({ name, number} )      // а екшен наш обєкт яка приймає імя і номер і записує дані в пейлоад повертає обєкт який потрапляє в диспач і він запихає в
      dispatch(action)                                 //  в діспач передаємо обєкт тобто наш екшин
      e.currentTarget.reset();
    }

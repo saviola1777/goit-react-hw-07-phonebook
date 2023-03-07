@@ -5,11 +5,14 @@ const contactsInstance =axios.create({
 })
  export const getAllContact =async()=>{
    const {data}= await contactsInstance.get('/')
+   console.log(data)
    return data
+  
  }
 
  export const addContacts =async(data)=>{
   const {data:resault}= await contactsInstance.post('/', data)
+  
   return resault
  }
 

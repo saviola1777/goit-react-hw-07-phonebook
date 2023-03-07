@@ -26,8 +26,8 @@ const isDublication = (name) => {
   if (isDublication(name)) {
          return alert(`${name} is already in contacts!`) 
       }                  
-    const action  = addContact({ name, number} )
-     dispatch(action)
+    const action  = addContact({ name, number} )      // а екшен наш обєкт яка приймає імя і номер і записує дані в пейлоад повертає обєкт який потрапляє в диспач і він запихає в
+     dispatch(action)                                 //  в діспач передаємо обєкт тобто наш екшин
      e.currentTarget.reset();
    }
 

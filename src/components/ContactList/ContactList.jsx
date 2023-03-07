@@ -1,10 +1,16 @@
 import css from "components/ContactList/ContactList.module.css";
+import { useEffect } from "react";
 
+import { fetchAllContacts } from "Redux/Contacts/contacts-operations";
 import { useSelector, useDispatch } from "react-redux";
 import { getFilteredContact } from 'Redux/Contacts/contacts-selector'
 import { deleteContacts } from "Redux/Contacts/contacts-slice"
 
 const ContactList = () => {
+
+  useEffect(()=>{
+    dispatch(fetchAllContacts())  // викликаємо функцію повертається функція і ми її пхаємо в диспатч
+  },[])
 
   const contacts = useSelector(getFilteredContact)
   const dispatch = useDispatch()
@@ -23,7 +29,7 @@ const ContactList = () => {
       console.log('contactList функція яку перебираємо через map',contactList)
   return (
 
-    <ol className={css.contactList}>контакти які не рендереться </ol>
+    <ol className={css.contactList}>{contactList}</ol>
 
   )
 }

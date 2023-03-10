@@ -14,7 +14,7 @@ console.log(contacts)
   const name = e.currentTarget.name.value
   const number = e.currentTarget.number.value
 
-    dispatch(actions.fetchAddContacts( name, number))     // а екшен наш обєкт яка приймає імя і номер і записує дані в пейлоад повертає обєкт який потрапляє в диспач і він запихає в
+    dispatch(actions.fetchAddContacts({ name, number}))     // а екшен наш обєкт яка приймає імя і номер і записує дані в пейлоад повертає обєкт який потрапляє в диспач і він запихає в
     
      e.currentTarget.reset();
    }

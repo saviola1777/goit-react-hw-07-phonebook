@@ -1,39 +1,23 @@
+import { useSelector, useDispatch} from "react-redux";    // імпортуємо компонент провайдер який дає доступ до глобального стану
 import css from "components/ContactForm/ContactForm.module.css"
 
+import {allContact} from '../../Redux/Contacts/contacts-selector'
 import* as actions from '../../Redux/Contacts/contacts-operations' 
  
-import { useSelector, useDispatch} from "react-redux";    // імпортуємо компонент провайдер який дає доступ до глобального стану
-// import { addContact } from "Redux/Contacts/contacts-slice"
-import { useEffect } from "react";
-
-const ContactForm =()=>{                    
+const ContactForm =()=>{  
+const contacts = useSelector(allContact) 
 const dispatch= useDispatch()
-const contacts = useSelector(store=>store.contacts.items)
+console.log(contacts)
 
-useEffect(()=>{
-  dispatch(actions.fetchAddContacts())  // викликаємо операцію в діспатч
-},[dispatch])
-
-
-const isDublication = (name) => {
-  const normalizeName = name.toLowerCase()
-  const nameContact = contacts.find(({ name }) => {
-    return (normalizeName === name.toLowerCase())
-  })
-  return Boolean(nameContact)
-}
 
 
  const onHendleSubmit = (e) => {
   e.preventDefault();
   const name = e.currentTarget.name.value
   const number = e.currentTarget.number.value
-  console.log(name ,number)
-  if (isDublication(name)) {
-         return alert(`${name} is already in contacts!`) 
-      }                  
-    const action  = actions.fetchAddContacts({ name, number} )      // а екшен наш обєкт яка приймає імя і номер і записує дані в пейлоад повертає обєкт який потрапляє в диспач і він запихає в
-     dispatch(action)                                 //  в діспач передаємо обєкт тобто наш екшин
+
+    dispatch(actions.fetchAddContacts({ name, number}))     // а екшен наш обєкт яка приймає імя і номер і записує дані в пейлоад повертає обєкт який потрапляє в диспач і він запихає в
+    
      e.currentTarget.reset();
    }
 

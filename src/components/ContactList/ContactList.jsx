@@ -1,33 +1,30 @@
 import css from "components/ContactList/ContactList.module.css";
 import { useEffect } from "react";
 
-import* as actions from '../../Redux/Contacts/contacts-operations' 
+import * as actions from '../../Redux/Contacts/contacts-operations'
 import { useSelector, useDispatch } from "react-redux";
-// import { getFilteredContact } from 'Redux/Contacts/contacts-selector'
-// import { deleteContacts } from "Redux/Contacts/contacts-slice"
+import { allContact, } from '../../Redux/Contacts/contacts-selector'
 
 const ContactList = () => {
 
-  const contacts = useSelector(store=>store.contacts.items)
-  console.log('contacts',contacts )
+  const contacts = useSelector(allContact)
+  console.log('contacts', contacts)
   const dispatch = useDispatch()
- 
-  useEffect(()=>{
+
+  useEffect(() => {
     dispatch(actions.fetchAllContacts())  // викликаємо операцію в діспатч
-  },[dispatch])
+  }, [dispatch])
 
 
   const deleteContact = id => {
     dispatch(actions.fetchDeleteContacts(id))
-    
-    
   }
 
   const contactList = contacts.map(({ id, name, number }) =>
     <li className={css.contactItem} key={id}>
       <p className={css.contactSpan}>{name}</p><p className={css.contactSpam}>{number}</p>
       <button className={css.contactButton} type="button" onClick={() => deleteContact(id)}>delete</button></li>)
-      
+
   return (
 
     <ol className={css.contactList}>{contactList}</ol>

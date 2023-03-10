@@ -5,7 +5,7 @@ const contactsInstance =axios.create({
 })
  export const getAllContact =async()=>{
    const {data}= await contactsInstance.get('/')
-   console.log(data)
+  //  console.log(data)
    return data
   
  }

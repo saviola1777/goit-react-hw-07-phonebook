@@ -12,7 +12,7 @@ const ContactList = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(actions.fetchAllContacts())  // викликаємо операцію в діспатч
+    dispatch(actions.fetchAllContacts())  // викликаємо операцію в діспатч v
   }, [dispatch])
 
 

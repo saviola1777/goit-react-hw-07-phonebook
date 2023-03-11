@@ -1,6 +1,7 @@
 
 export const allContact = store => store.contacts.items;
 
+
 export const allFilter=store=>store.filter
 
 export const getFilteredContact = (contacts , filter) => {

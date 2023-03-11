@@ -39,7 +39,7 @@ const contactsSlice = createSlice({
    .addCase(fetchDeleteContacts.pending  , (store)=>{
       store.loading=true
    })
-   .addCase(fetchDeleteContacts.fulfilled , (store,{payload})=>{           //Виконається якщо HTTP-запит завершився успішно
+   .addCase(fetchDeleteContacts.fulfilled , (store,{payload})=>{
       store.loading=false
       const index=store.items.findIndex(item=>item.id===payload)
       store.items.splice(index , 1)

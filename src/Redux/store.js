@@ -1,21 +1,12 @@
 import rootReducer from './root-reducer'
 import { configureStore } from "@reduxjs/toolkit";  // надає функцію configureStore(options), яка обертає оригінальний createStore()
-import {persistStore,FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';     
-
-
-
-
+    
 export const store = configureStore({
    reducer: rootReducer,                        // reducer - функція із логікою зміни стану Redux. Обов'язковий параметр.
-   middleware: getDefaultMiddleware =>
-     getDefaultMiddleware({
-       serializableCheck: {
-         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-       },
-     }),
+
  });
 
-export const persistor = persistStore(store)
+export default store
 
 // Redux Toolkit - це офіційна бібліотека для ефективної розробки з використанням Redux, яка призначена для стандартизації та спрощення написання логіки Redux.
 // Redux Toolkit надає функцію configureStore(options), яка обертає оригінальний createStore(), єдиним аргументом очікує об'єкт параметрів та налаштовує деякі корисні інструменти  

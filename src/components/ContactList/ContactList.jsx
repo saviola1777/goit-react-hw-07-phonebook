@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 import * as actions from '../../Redux/Contacts/contacts-operations'
 import { useSelector, useDispatch } from "react-redux";
-import { allContact, } from '../../Redux/Contacts/contacts-selector'
+import { allContact} from '../../Redux/Contacts/contacts-selector'
 
 const ContactList = () => {
 
